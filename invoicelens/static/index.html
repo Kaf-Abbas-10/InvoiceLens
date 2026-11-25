@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Private, rule-based invoice extraction. Inspect every charge, check the maths, and review uncertain results.">
+  <title>InvoiceLens · Invoice workspace</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%232d68ed'/%3E%3Cpath d='M12 10h12l5 5v15H12zM17 18h7m-7 5h7' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m6 12 4 4 8-8"/><circle cx="12" cy="12" r="10"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m10.3 3.9-8.1 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.1l-8-14a2 2 0 0 0-3.4 0Z M12 9v4m0 4h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2-3 4m.1 3h.01"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 10 6-10 6L2 9zm-10 12 10 6 10-6M2 12l10 6 10-6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="InvoiceLens home"><span class="brand-mark"><svg><use href="#i-file"/></svg></span><span>Invoice<span class="brand-light">Lens</span><small>DOCUMENT WORKSPACE</small></span></a>
+    <div class="workspace-label">WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <button class="nav-item active" id="workspace-nav"><svg><use href="#i-grid"/></svg>Invoices<span class="nav-count" id="session-count">0</span></button>
+      <a class="nav-item" href="/docs" target="_blank" rel="noopener"><svg><use href="#i-code"/></svg>API reference<small>↗</small></a>
+      <button class="nav-item" id="guide-button"><svg><use href="#i-help"/></svg>How it works</button>
+    </nav>
+    <div class="recent-heading">THIS SESSION <button id="clear-session" title="Clear session" aria-label="Clear session">Clear</button></div>
+    <div id="history" class="history"><p class="history-empty">Your invoices will appear here.</p></div>
+    <div class="privacy-card"><span class="privacy-icon"><svg><use href="#i-lock"/></svg></span><strong>Your documents stay yours.</strong><p>Processed on this server. No LLMs, external APIs, or saved uploads.</p><span class="privacy-tag">PRIVATE BY DESIGN</span></div>
+    <div class="sidebar-footer"><span class="avatar">IL</span><div>Local workspace<small>Rule-based engine · v0.1</small></div></div>
+  </aside>
+
+  <main>
+    <header class="topbar"><div>Workspace <svg><use href="#i-chevron"/></svg><strong>Invoices</strong></div><span class="engine-badge"><svg><use href="#i-lock"/></svg>No LLM · No cloud calls</span></header>
+    <div class="content">
+      <div class="page-heading"><div><div class="eyebrow">LESS TYPING. MORE CLARITY.</div><h1>Your invoices, understood.</h1><p>Extract the details. Check the numbers. Keep the control.</p></div><button class="button primary" id="upload-button"><svg><use href="#i-upload"/></svg>Upload invoice</button></div>
+      <input type="file" id="file-input" accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.json" hidden>
+      <section class="dropzone" id="dropzone" aria-label="Upload an invoice">
+        <div class="drop-icon"><svg><use href="#i-upload"/></svg></div><div><strong>Drop an invoice here, or <button class="text-button" id="browse-button">browse files</button></strong><p>PDF, PNG, JPG, TIFF or word JSON <span>·</span> Up to 20 MB / 20 pages</p></div><span class="local-note"><svg><use href="#i-lock"/></svg>Stays on this server</span>
+      </section>
+      <div class="samples-row"><span>Take it for a spin</span><div id="sample-buttons"><button data-sample="fleet-service" class="sample-chip">Fleet service</button><button data-sample="side-by-side" class="sample-chip">Parts & labour</button><button data-sample="review-required" class="sample-chip">Needs review <span class="amber-dot"></span></button></div><label class="more-samples"><span class="sr-only">More synthetic examples</span><select id="more-samples"><option value="">More examples</option><option value="multiline">Wrapped description</option><option value="job-blocks">Multiple job blocks</option><option value="multi-page">Two-page invoice</option><option value="credit">Negative charge</option><option value="no-header">No table header</option></select></label><span class="synthetic-note">Synthetic examples</span></div>
+      <div class="error-banner" id="error" role="alert" hidden></div>
+      <div class="loading" id="loading" role="status" hidden><span class="spinner"></span><span id="loading-text">Reading the document…</span></div>
+
+      <section id="results" aria-label="Invoice extraction" hidden>
+        <div class="metrics"><div class="metric"><span class="metric-icon blue"><svg><use href="#i-file"/></svg></span><div><span class="metric-label">Extracted line items</span><strong id="metric-lines">0</strong></div><small id="metric-pages">1 page</small></div><div class="metric"><span class="metric-icon green"><svg><use href="#i-check"/></svg></span><div><span class="metric-label">Maths checks passed</span><strong id="metric-checks">0 / 0</strong></div><small>Decimal precision</small></div><div class="metric"><span class="metric-icon amber"><svg><use href="#i-alert"/></svg></span><div><span class="metric-label">Review flags</span><strong id="metric-flags">0</strong></div><small id="metric-status">Ready to inspect</small></div></div>
+        <div class="result-title"><div><span class="file-icon"><svg><use href="#i-file"/></svg></span><div><h2 id="filename"></h2><span id="file-meta"></span></div></div><div class="result-actions"><span id="status-badge" class="status-badge"></span><label><span class="sr-only">Export format</span><select id="export-format"><option value="json">JSON</option><option value="csv">CSV</option></select></label><button class="button secondary" id="export-button"><svg><use href="#i-download"/></svg>Export</button></div></div>
+        <div class="review-layout">
+          <section class="document-panel panel" aria-labelledby="source-title"><div class="panel-heading"><h3 id="source-title">Source document</h3><div class="segmented"><button id="word-view" class="selected" aria-pressed="true">Word map</button><button id="original-view" aria-pressed="false">Original</button></div></div><div class="viewer-toolbar"><span id="source-label">Provided word geometry</span><label><span class="sr-only">Document page</span><select id="page-select"></select></label></div><div id="document-viewer" class="document-viewer"><canvas id="document-canvas" aria-label="Invoice word map. Select a line item to highlight its source position."></canvas><iframe id="pdf-preview" title="Original PDF invoice" hidden></iframe><img id="image-preview" alt="Original uploaded invoice" hidden><p id="original-unavailable" hidden>No original file is attached to this word JSON. Select Word map to inspect its text and coordinates.</p></div><div class="viewer-footer"><svg><use href="#i-layers"/></svg><span>Click a line item to locate it on the page.</span><button class="text-button" id="clear-highlight" hidden>Clear</button></div></section>
+          <section class="extraction-panel panel" aria-labelledby="extracted-title"><div class="panel-heading"><h3 id="extracted-title">Extracted data</h3><span class="rule-tag">RULE-BASED</span></div><div class="data-tabs" role="tablist" aria-label="Extraction view"><button id="details-tab" role="tab" aria-selected="true" aria-controls="details-view" class="selected">Overview</button><button id="json-tab" role="tab" aria-selected="false" aria-controls="json-view">Raw JSON</button></div><div id="details-view" role="tabpanel" aria-labelledby="details-tab"><dl class="fields" id="fields"></dl><div class="section-heading"><h4>Line items <span id="line-count"></span></h4><span>Click to inspect source</span></div><div class="table-scroll"><table><thead><tr><th>Description</th><th>Qty</th><th>Unit price</th><th class="amount">Amount</th></tr></thead><tbody id="line-items"></tbody></table></div><div class="totals" id="totals"></div><div class="math-section"><div class="section-heading"><h4>Reconciliation</h4><span class="tiny-tag">± 0.01 tolerance</span></div><div id="math-checks"></div></div><div id="review-flags" class="review-flags"></div><p class="confidence-note" id="confidence-note"></p></div><pre id="json-view" role="tabpanel" aria-labelledby="json-tab" hidden></pre></section>
+        </div>
+      </section>
+      <div class="empty-state" id="empty-state" hidden><svg><use href="#i-file"/></svg><h2>A clear view of every charge.</h2><p>Upload an invoice or try an example to see its details, line items, and reconciliation.</p></div>
+      <footer class="page-footer"><span>InvoiceLens <span>·</span> Built for a second look.</span><span id="ocr-status">Checking local OCR…</span></footer>
+    </div>
+  </main>
+  <dialog id="guide-dialog"><div class="dialog-heading"><span class="brand-mark"><svg><use href="#i-file"/></svg></span><h2>From document to details.</h2><button id="close-guide" aria-label="Close guide"><svg><use href="#i-close"/></svg></button></div><p>InvoiceLens uses geometry and explicit rules. It never sends your invoice to an LLM or external extraction service.</p><ol><li><strong>Read locally.</strong> Digital PDFs use their text layer. Scans and images use a locally installed Tesseract engine.</li><li><strong>Follow the layout.</strong> Words form rows; aligned amounts identify charge columns. Each extracted line keeps its page and bounding box.</li><li><strong>Check the maths.</strong> Charge totals, tax, discounts, and job subtotals are reconciled with decimal arithmetic.</li><li><strong>Take a second look.</strong> Review flags explain missing fields, low OCR confidence, and mismatched totals. A passing check does not guarantee every field is correct.</li></ol><p class="dialog-note">Examples are synthetic layout fixtures, not a real-world accuracy benchmark. The confidence indicator is a rule heuristic, not a calibrated probability. Uploads are processed in memory, apart from temporary multipart spooling. Session history stays in browser memory and clears on refresh.</p><a href="/docs" target="_blank" rel="noopener" class="button secondary">Explore the local API</a></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

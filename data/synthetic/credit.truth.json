@@ -1,0 +1,22 @@
+{
+  "vendor": "Northstar Fleet Services",
+  "invoice_number": "NFS-2048",
+  "date": "2026-11-24",
+  "currency": "USD",
+  "subtotal": "125.00",
+  "tax": "12.50",
+  "shipping": null,
+  "discount": null,
+  "total": "137.50",
+  "needs_review": false,
+  "line_items": [
+    {
+      "description": "Replacement pump",
+      "amount": "150.00"
+    },
+    {
+      "description": "Returned core credit",
+      "amount": "-25.00"
+    }
+  ]
+}

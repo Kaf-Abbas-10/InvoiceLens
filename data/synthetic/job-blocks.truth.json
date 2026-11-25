@@ -1,0 +1,26 @@
+{
+  "vendor": "Northstar Fleet Services",
+  "invoice_number": "NFS-2048",
+  "date": "2026-11-24",
+  "currency": "USD",
+  "subtotal": "200.00",
+  "tax": "20.00",
+  "shipping": null,
+  "discount": null,
+  "total": "220.00",
+  "needs_review": false,
+  "line_items": [
+    {
+      "description": "Brake pads",
+      "amount": "100.00"
+    },
+    {
+      "description": "Fitting",
+      "amount": "60.00"
+    },
+    {
+      "description": "Tyre rotation",
+      "amount": "40.00"
+    }
+  ]
+}

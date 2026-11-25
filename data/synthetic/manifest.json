@@ -1,0 +1,55 @@
+{
+  "name": "InvoiceLens synthetic rule fixtures (development only)",
+  "synthetic": true,
+  "notes": "Hand-authored ground truth. These fixtures were used during development and are NOT an unseen benchmark.",
+  "documents": [
+    {
+      "id": "fleet-service",
+      "input": "fleet-service.words.json",
+      "ground_truth": "fleet-service.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "side-by-side",
+      "input": "side-by-side.words.json",
+      "ground_truth": "side-by-side.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "review-required",
+      "input": "review-required.words.json",
+      "ground_truth": "review-required.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "multiline",
+      "input": "multiline.words.json",
+      "ground_truth": "multiline.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "job-blocks",
+      "input": "job-blocks.words.json",
+      "ground_truth": "job-blocks.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "multi-page",
+      "input": "multi-page.words.json",
+      "ground_truth": "multi-page.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "credit",
+      "input": "credit.words.json",
+      "ground_truth": "credit.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "no-header",
+      "input": "no-header.words.json",
+      "ground_truth": "no-header.truth.json",
+      "split": "dev"
+    }
+  ]
+}

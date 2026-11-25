@@ -1,0 +1,26 @@
+{
+  "vendor": "Northstar Fleet Services",
+  "invoice_number": "NFS-2048",
+  "date": "2026-11-24",
+  "currency": "USD",
+  "subtotal": "300.00",
+  "tax": "30.00",
+  "shipping": null,
+  "discount": null,
+  "total": "330.00",
+  "needs_review": false,
+  "line_items": [
+    {
+      "description": "Annual inspection",
+      "amount": "200.00"
+    },
+    {
+      "description": "Replacement hoses",
+      "amount": "75.00"
+    },
+    {
+      "description": "Road test",
+      "amount": "25.00"
+    }
+  ]
+}

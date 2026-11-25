@@ -1,0 +1,26 @@
+{
+  "vendor": "Northstar Fleet Services",
+  "invoice_number": "NFS-2048",
+  "date": "2026-11-24",
+  "currency": "USD",
+  "subtotal": "385.00",
+  "tax": "38.50",
+  "shipping": null,
+  "discount": null,
+  "total": "423.50",
+  "needs_review": false,
+  "line_items": [
+    {
+      "description": "Engine oil & filter",
+      "amount": "120.00"
+    },
+    {
+      "description": "Brake inspection",
+      "amount": "85.00"
+    },
+    {
+      "description": "Workshop labour including diagnostic scan",
+      "amount": "180.00"
+    }
+  ]
+}

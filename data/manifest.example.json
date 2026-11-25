@@ -1,0 +1,19 @@
+{
+  "name": "My independently labelled invoice corpus",
+  "synthetic": false,
+  "documents": [
+    {
+      "id": "vendor-a-001",
+      "input": "private/vendor-a-001.pdf",
+      "ground_truth": "private/vendor-a-001.truth.json",
+      "split": "dev"
+    },
+    {
+      "id": "vendor-b-001",
+      "input": "private/vendor-b-001.pdf",
+      "ground_truth": "private/vendor-b-001.truth.json",
+      "split": "held-out"
+    }
+  ]
+}
+

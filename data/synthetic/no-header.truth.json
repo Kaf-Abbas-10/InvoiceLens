@@ -1,0 +1,22 @@
+{
+  "vendor": "Northstar Fleet Services",
+  "invoice_number": "NFS-2048",
+  "date": "2026-11-24",
+  "currency": "USD",
+  "subtotal": "120.00",
+  "tax": "12.00",
+  "shipping": null,
+  "discount": null,
+  "total": "132.00",
+  "needs_review": false,
+  "line_items": [
+    {
+      "description": "Safety inspection",
+      "amount": "100.00"
+    },
+    {
+      "description": "Fluid top-up",
+      "amount": "20.00"
+    }
+  ]
+}

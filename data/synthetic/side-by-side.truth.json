@@ -1,0 +1,30 @@
+{
+  "vendor": "Atlas Repair Works",
+  "invoice_number": "AR-917",
+  "date": "2026-11-24",
+  "currency": "USD",
+  "subtotal": "320.00",
+  "tax": "32.00",
+  "shipping": null,
+  "discount": null,
+  "total": "352.00",
+  "needs_review": false,
+  "line_items": [
+    {
+      "description": "Air filter",
+      "amount": "45.00"
+    },
+    {
+      "description": "Diagnostics",
+      "amount": "80.00"
+    },
+    {
+      "description": "Belt kit",
+      "amount": "75.00"
+    },
+    {
+      "description": "Installation",
+      "amount": "120.00"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.25,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "invoicelens"
+version = "0.1.0"
+description = "Private, rule-based invoice extraction with geometry and arithmetic checks."
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.165,<1",
+  "uvicorn>=0.30,<1",
+  "python-multipart>=0.0.18,<1",
+  "pydantic>=2.9,<3",
+  "pymupdf>=1.24,<2",
+  "Pillow>=11,<13",
+  "pytesseract>=0.3.13,<1",
+  "numpy>=2.1,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10", "httpx>=0.27,<1"]
+
+[project.scripts]
+invoicelens = "invoicelens.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["invoicelens"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
