@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* InvoiceLens: clean white workspace, one indigo accent, a soft indigo highlighter on the page. */
+:root {
+  --desk: #f2f2f7;
+  --bg: #fafafc;
+  --paper: #ffffff;
+  --card: #ffffff;
+  --ink: #16151d;
+  --ink-2: #3a342f;
+  --muted: #62617a;
+  --faint: #9d9cb0;
+  --line: #eaeaf2;
+  --line-strong: #dcdce8;
+  --soft: #f4f4f9;
+  --marker: #4f46e5;          /* brand indigo: buttons, accents */
+  --marker-soft: #eef0ff;
+  --marker-ink: #ffffff;
+  --hl: #a5b4fc;              /* highlighter on the document */
+  --pass: #15803d;
+  --pass-soft: #ecf8f0;
+  --review: #b45309;
+  --review-soft: #fef5e7;
+  --fail: #c2362b;
+  --fail-soft: #fdeceb;
+  --rail: #ffffff;            /* sidebar is white now */
+  --rail-2: #eef0ff;
+  --rail-ink: #16151d;
+  --rail-muted: #62617a;
+  --rail-line: #eaeaf2;
+}
+
+@theme inline {
+  --color-desk: var(--desk);
+  --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-soft: var(--soft);
+  --color-marker: var(--marker);
+  --color-marker-soft: var(--marker-soft);
+  --color-marker-ink: var(--marker-ink);
+  --color-pass: var(--pass);
+  --color-pass-soft: var(--pass-soft);
+  --color-review: var(--review);
+  --color-review-soft: var(--review-soft);
+  --color-fail: var(--fail);
+  --color-fail-soft: var(--fail-soft);
+  --color-rail: var(--rail);
+  --color-rail-2: var(--rail-2);
+  --color-rail-ink: var(--rail-ink);
+  --color-rail-muted: var(--rail-muted);
+  --color-rail-line: var(--rail-line);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-geist-sans);
+}
+
+html { background: var(--bg); color: var(--ink); }
+body { background: var(--bg); }
+
+.font-serif { font-weight: 650; letter-spacing: -0.025em; }
+
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1, "zero" 0; }
+
+/* The desk the paper sits on: a faint dot grid. */
+.desk {
+  background-color: var(--desk);
+  background-image: radial-gradient(color-mix(in oklab, var(--ink) 9%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.paper-shadow {
+  box-shadow: 0 1px 0 rgba(26, 25, 20, .04), 0 2px 4px rgba(26, 25, 20, .05),
+    0 14px 34px -12px rgba(26, 25, 20, .22);
+}
+
+/* Highlighter: drawn left to right when a charge is selected. */
+.marker-stroke {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: marker-draw .38s cubic-bezier(.3, .7, .2, 1) both;
+}
+@keyframes marker-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Scanning beam while the engine reads a document. */
+.scan-beam {
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--marker) 55%, transparent) 48%, var(--marker) 50%, transparent 52%, transparent);
+  animation: scan 1.6s ease-in-out infinite alternate;
+}
+@keyframes scan { from { transform: translateY(-50%); } to { transform: translateY(50%); } }
+
+.rise { animation: rise .45s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.fade { animation: fade .25s ease-out both; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+dialog::backdrop { background: rgba(22, 21, 29, .35); backdrop-filter: blur(2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .marker-stroke, .scan-beam, .rise, .fade { animation: none; }
+}
+
+/* Thin, warm scrollbars inside panels */
+.scroll-thin { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.rail-scroll { scrollbar-width: thin; scrollbar-color: var(--rail-line) transparent; }
+
+:focus-visible { outline: 2px solid var(--marker); outline-offset: 2px; border-radius: 6px; }

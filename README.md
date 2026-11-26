@@ -66,6 +66,17 @@ docker run --rm -p 127.0.0.1:8011:8000 invoicelens
 
 The container runs as a non-root user. Visit http://127.0.0.1:8011. Docker is an alternative installation path; the image has not been built as part of the local Python checks.
 
+## Web app (Next.js)
+
+A redesigned workspace lives in `web/` (Next.js 16, React 19, Tailwind 4). It talks to the same Python API.
+
+```bash
+invoicelens serve --port 8200            # API
+cd web && npm install && npm run dev -- --port 3200
+```
+
+Open **http://localhost:3200**. `/api/*` and `/docs` are proxied to `INVOICELENS_API_URL` (default `http://127.0.0.1:8200`). The original static page is still served by the API at its own `/`.
+
 ## Command-line tools
 
 After activating the environment:
